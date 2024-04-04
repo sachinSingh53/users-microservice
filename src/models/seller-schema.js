@@ -66,6 +66,9 @@ const sellerSchema = new Schema(
     }
 );
 
+
+
+
 const SellerModel = mongoose.model('Seller', sellerSchema);
 
 export { SellerModel };
