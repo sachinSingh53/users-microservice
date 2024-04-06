@@ -4,9 +4,10 @@ import jwt from 'jsonwebtoken';
 import cors from 'cors';
 import compression from 'compression';
 import bodyParser from 'body-parser';
-// import { createConnection } from './queues/connection.js';
+import { createConnection } from './queues/connection.js';
 import { winstonLogger } from '../../9-jobber-shared/src/logger.js';
 import { CustomError } from '../../9-jobber-shared/src/errors.js';
+import { consumeBuyerDirectMessage, consumeReviewFanoutMessage, consumeSeedGigDirectMessages, consumeSellerDirectMessage } from './queues/user-consumer.js';
 
 
 
@@ -44,15 +45,20 @@ function standardMiddleware(app) {
 //     app.use('/api/v1/auth',searchRoutes);
 // }
 
-// async function startQueues() {
-//     try {
-//         const authChannel = await createConnection();
-//         return authChannel
-//     } catch (error) {
-//         log.error('error in startQueues() in server.js ', error, '');
-//     }
+async function startQueues() {
+    try {
+        const userChannel = await createConnection();
+        await consumeBuyerDirectMessage(userChannel);
+        await consumeSellerDirectMessage(userChannel);
+        await consumeReviewFanoutMessage(userChannel);
+        await consumeSeedGigDirectMessages(userChannel);
+        return userChannel;
+        
+    } catch (error) {
+        log.error('error in startQueues() in server.js ', error, '');
+    }
 
-// }
+}
 
 
 
@@ -82,12 +88,12 @@ async function start(app) {
     securityMiddleware(app);
     standardMiddleware(app);
     // routesMiddleware(app);
-    // const authChannel = await startQueues();
+    const userChannel = await startQueues();
     // startElasticSearch();
     errorHandler(app);
     startServer(app);
 
-    // return authChannel;
+    return userChannel;
 }
 
 

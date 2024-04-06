@@ -1,7 +1,5 @@
 import { BuyerModel } from "../models/buyer-schema.js"
 
-
-
 async function getBuyerByUsername(username) {
     const buyer = await BuyerModel.find({ username }).exec();
     return buyer;

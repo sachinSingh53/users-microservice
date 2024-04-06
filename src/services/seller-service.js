@@ -63,6 +63,7 @@ async function updateSellerOngoingJobsProp(sellerId, ongoingJobs) {
     await SellerModel.updateOne({ _id: sellerId }, { $inc: { ongoingJobs } }).exec();
 };
 
+
 async function updateSellerCancelledJobsProp(sellerId) {
     await SellerModel.updateOne({ _id: sellerId }, { $inc: { ongoingJobs: -1, cancelledJobs: 1 } }).exec();
 };

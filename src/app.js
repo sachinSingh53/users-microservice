@@ -1,13 +1,15 @@
 import { databaseConnection } from "./database.js"
 import { start } from "./server.js";
 import express from 'express';
+const app = express();
 
-
-
-const init = ()=>{
+const init = async()=>{
     databaseConnection();
-    const app = express();
-    start(app);
+    return await start(app);
 }
 
-init();
+
+
+const userChannel = await init();
+
+export{userChannel};
