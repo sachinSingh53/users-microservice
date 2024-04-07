@@ -120,6 +120,7 @@ async function consumeReviewFanoutMessage(channel) {
         log.log('error', 'UserService UserConsumer consumeReviewFanoutMessage() method error', error);
     }
 }
+
 async function consumeSeedGigDirectMessages(channel) {
     try {
         if (!channel) {

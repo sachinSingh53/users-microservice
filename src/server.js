@@ -8,6 +8,7 @@ import { createConnection } from './queues/connection.js';
 import { winstonLogger } from '../../9-jobber-shared/src/logger.js';
 import { CustomError } from '../../9-jobber-shared/src/errors.js';
 import { consumeBuyerDirectMessage, consumeReviewFanoutMessage, consumeSeedGigDirectMessages, consumeSellerDirectMessage } from './queues/user-consumer.js';
+import { appRoutes } from './routes.js';
 
 
 
@@ -37,13 +38,10 @@ function standardMiddleware(app) {
     app.use(bodyParser.urlencoded({ extended: true, limit: '200mb' }));
 }
 
-// function routesMiddleware(app) {
+function routesMiddleware(app) {
     
-//     app.use('/api/v1/auth', authRoutes);
-//     app.use('/api/v1/auth', currentUserRoutes);
-//     app.use('',healthroutes);
-//     app.use('/api/v1/auth',searchRoutes);
-// }
+   appRoutes(app);
+}
 
 async function startQueues() {
     try {
@@ -87,7 +85,7 @@ function startServer(app) {
 async function start(app) {
     securityMiddleware(app);
     standardMiddleware(app);
-    // routesMiddleware(app);
+    routesMiddleware(app);
     const userChannel = await startQueues();
     // startElasticSearch();
     errorHandler(app);

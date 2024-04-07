@@ -11,14 +11,15 @@ async function getBuyerByEmail(email) {
 }
 
 async function getRandomBuyers(count) {
-    const buyers = await BuyerModel.aggregate({ $sample: { size: count } });
+    const buyers = await BuyerModel.aggregate([{ $sample: { size: count } }]);
     return buyers;
 }
 
 async function createBuyer(buyerData) {
-    const checkIfBuyerExist = getBuyerByEmail(`${buyerData.email}`);
-    if (!checkIfBuyerExist) {
+    const checkIfBuyerExist = await getBuyerByEmail(`${buyerData.email}`);
+    if (!checkIfBuyerExist.length) {
         await BuyerModel.create(buyerData);
+        
     }
 }
 
