@@ -37,7 +37,7 @@ const createSellerController = async(req,res)=>{
 
     res.status(StatusCodes.CREATED).json({
         message:'Seller created successfully',
-        seller: createSeller
+        seller: createdSeller
     })
 }
 
