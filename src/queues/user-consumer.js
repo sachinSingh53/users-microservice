@@ -72,7 +72,7 @@ async function consumeSellerDirectMessage(channel) {
                 })
             }
             else if (type === 'update-gig-count') {
-                await updateTotalGigsCount(`${sellerId}`, count);
+                await updateTotalGigsCount(`${gigSellerId}`, count);
             }
             else if (type === 'cancel-order') {
                 await updateSellerCancelledJobsProp(sellerId);
@@ -148,8 +148,6 @@ async function consumeSeedGigDirectMessages(channel) {
                     'message sent to gig service'
                 )
             }
-
-
         })
 
     } catch (error) {
