@@ -140,6 +140,7 @@ async function consumeSeedGigDirectMessages(channel) {
             if (type === 'getSellers') {
                 const { count } = JSON.parse(msg.content.toString());
                 const sellers = await getRandomSellers(parseInt(count));
+
                 await publishDirectMessage(
                     channel,
                     'jobber-seed-gig',
@@ -148,6 +149,7 @@ async function consumeSeedGigDirectMessages(channel) {
                     'message sent to gig service'
                 )
             }
+            channel.ack(msg);
         })
 
     } catch (error) {

@@ -9,6 +9,7 @@ import { StatusCodes } from 'http-status-codes';
 const seed = async (req, res) => {
     const { count } = req.params;
     const buyers = await getRandomBuyers(parseInt(count, 10));
+    
     for (let i = 0; i < buyers.length; i++) {
         const buyer = buyers[i];
         const checkIfSellerExist = await getSellerByEmail(`${buyer.email}`);

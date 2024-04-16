@@ -9,7 +9,7 @@ import { seed } from '../controllers/seller/seed.js';
 const router = express.Router();
 
 const sellerRoutes = ()=>{
-    router.post('/seed/:count',seed)
+    router.post('/seed/:count',seed);
     router.get('/id/:sellerId',id);
     router.get('/username/:username',username);
     router.get('/random/:count',random);

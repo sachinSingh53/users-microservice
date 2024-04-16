@@ -19,6 +19,7 @@ async function getSellerByEmail(email) {
 
 async function getRandomSellers(count) {
     const sellers = await SellerModel.aggregate([{ $sample: { size: count } }]);
+
     return sellers;
 }
 
