@@ -1,6 +1,6 @@
 
 import {sellerSchema} from '../../schemes/seller.js'
-import { createSeller, updateSeller } from '../../services/seller-service.js';
+import { updateSeller } from '../../services/seller-service.js';
 import { BadRequestError } from '../../../../9-jobber-shared/src/errors.js';
 import { StatusCodes } from 'http-status-codes';
 
@@ -31,7 +31,7 @@ const updateSellerController = async(req,res)=>{
 
     res.status(StatusCodes.CREATED).json({
         message:'Seller created successfully',
-        seller: createSeller
+        seller: updatedSeller
     })
 }
 
