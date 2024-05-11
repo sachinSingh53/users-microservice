@@ -14,7 +14,7 @@ const sellerRoutes = ()=>{
     router.get('/username/:username',username);
     router.get('/random/:count',random);
     router.post('/create',createSellerController);
-    router.put('/sellerId',updateSellerController);
+    router.put('/:sellerId',updateSellerController);
     
 
     return router;
