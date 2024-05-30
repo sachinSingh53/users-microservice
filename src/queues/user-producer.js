@@ -12,7 +12,7 @@ async function publishDirectMessage(channel, exchangeName, routingKey, message, 
         channel.publish(exchangeName, routingKey, Buffer.from(message));
         log.info(logMessage);
     } catch (error) {
-        log.log('error','UserService publishDirectMessage() nethod error',error);
+        log.log('error','UserService publishDirectMessage() method error',error);
     }
 }
 
