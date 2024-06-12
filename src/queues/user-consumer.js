@@ -59,10 +59,14 @@ async function consumeSellerDirectMessage(channel) {
         await channel.bindQueue(jobberQueue.queue, exchangeName, routingKey);
         channel.consume(jobberQueue.queue, async (msg) => {
             const { type, sellerId, ongoingJobs, completedJobs, totalEarnings, recentDelivery, gigSellerId, count } = JSON.parse(msg.content.toString());
+            
             if (type === 'create-order') {
                 await updateSellerOngoingJobsProp(sellerId, ongoingJobs);
             }
             else if (type === 'aprove-order') {
+                
+    
+
                 await updateSellerCompletedJobsProp({
                     sellerId,
                     ongoingJobs,
