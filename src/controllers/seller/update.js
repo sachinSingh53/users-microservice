@@ -8,10 +8,7 @@ const updateSellerController = async(req,res)=>{
     const { error } = sellerSchema.validate(req.body);
     if (error) {
         throw new BadRequestError(error.details[0].message, ' Update seller() method error');
-    }
-
-    
-
+    }    
     const sellerData = {
         profilePublicId: req.body.profilePublicId,
         fullName: req.body.fullName,
