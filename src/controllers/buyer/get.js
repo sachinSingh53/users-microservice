@@ -1,4 +1,4 @@
-import { BadRequestError } from '../../../../9-jobber-shared/src/errors.js';
+import { BadRequestError } from '@sachinsingh53/jobber-shared';
 import{getBuyerByEmail,getBuyerByUsername} from '../../services/buyer-service.js'
 import{StatusCodes} from 'http-status-codes'
 
@@ -30,7 +30,6 @@ const username = async(req,res)=>{
         buyer
     })
 }
-
 
 export{
     email,

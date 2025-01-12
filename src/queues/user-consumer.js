@@ -1,9 +1,10 @@
-import { winstonLogger } from '../../../9-jobber-shared/src/logger.js'
+import { winstonLogger } from '@sachinsingh53/jobber-shared'
 import { createConnection } from './connection.js';
 import { createBuyer, updateBuyerPurchasedGigsProp } from '../services/buyer-service.js'
 import { getRandomSellers, updateSellerCancelledJobsProp, updateSellerCompletedJobsProp, updateSellerOngoingJobsProp, updateSellerReview, updateTotalGigsCount } from '../services/seller-service.js'
 import { publishDirectMessage } from '../queues/user-producer.js'
-const log = winstonLogger('userServiceConsumer', 'debug');
+import config from '../config.js';
+const log = winstonLogger(`${config.ELASTIC_SEARCH_URL}`,'userServiceConsumer', 'debug');
 
 async function consumeBuyerDirectMessage(channel) {
     try {

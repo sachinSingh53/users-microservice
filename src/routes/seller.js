@@ -4,8 +4,6 @@ import { updateSellerController } from '../controllers/seller/update.js';
 import { id, random, username } from '../controllers/seller/get.js';
 import { seed } from '../controllers/seller/seed.js';
 
-
-
 const router = express.Router();
 
 const sellerRoutes = ()=>{

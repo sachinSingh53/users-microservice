@@ -8,7 +8,6 @@ const buyerRoutes = ()=>{
     router.get('/username',currentUsername);
     router.get('/:username',username);
     
-
     return router;
 }
 

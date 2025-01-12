@@ -5,14 +5,14 @@ import cors from 'cors';
 import compression from 'compression';
 import bodyParser from 'body-parser';
 import { createConnection } from './queues/connection.js';
-import { winstonLogger } from '../../9-jobber-shared/src/logger.js';
-import { CustomError } from '../../9-jobber-shared/src/errors.js';
+import { winstonLogger } from '@sachinsingh53/jobber-shared';
+import { CustomError } from '@sachinsingh53/jobber-shared';
 import { consumeBuyerDirectMessage, consumeReviewFanoutMessage, consumeSeedGigDirectMessages, consumeSellerDirectMessage } from './queues/user-consumer.js';
 import { appRoutes } from './routes.js';
 
 
 
-const log = winstonLogger('UsersServer', 'debug');
+const log = winstonLogger(`${config.ELASTIC_SEARCH_URL}`,'UsersServer', 'debug');
 
 function securityMiddleware(app) {
     app.set('trust proxy', 1);
@@ -39,7 +39,6 @@ function standardMiddleware(app) {
 }
 
 function routesMiddleware(app) {
-    
    appRoutes(app);
 }
 
@@ -55,7 +54,6 @@ async function startQueues() {
     } catch (error) {
         log.error('error in startQueues() in server.js ', error, '');
     }
-
 }
 
 

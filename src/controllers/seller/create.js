@@ -1,7 +1,7 @@
 
 import {sellerSchema} from '../../schemes/seller.js'
 import { createSeller, getSellerByEmail } from '../../services/seller-service.js';
-import { BadRequestError } from '../../../../9-jobber-shared/src/errors.js';
+import { BadRequestError } from '@sachinsingh53/jobber-shared';
 import { StatusCodes } from 'http-status-codes';
 
 const createSellerController = async(req,res)=>{

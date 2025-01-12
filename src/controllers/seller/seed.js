@@ -1,7 +1,7 @@
 import { faker } from '@faker-js/faker';
 import{getRandomBuyers} from '../../services/buyer-service.js'
 import{createSeller,getSellerByEmail} from '../../services/seller-service.js'
-import { BadRequestError } from '../../../../9-jobber-shared/src/errors.js';
+import { BadRequestError } from '@sachinsingh53/jobber-shared';
 import { v4 as uuidv4 } from 'uuid'; 
 
 import { StatusCodes } from 'http-status-codes';

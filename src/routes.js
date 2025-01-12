@@ -1,4 +1,4 @@
-import{verifyGatewayRequest} from '../../9-jobber-shared/src/gateway-middleware.js'
+import{verifyGatewayRequest} from '@sachinsingh53/jobber-shared'
 import { buyerRoutes } from './routes/buyer.js';
 import { healthRoutes } from './routes/health.js';
 import { sellerRoutes } from './routes/seller.js';
